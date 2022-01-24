@@ -1,3 +1,6 @@
+/**
+ * soubor komponent, pro zobrazeni skupiny katedra
+ */
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -8,12 +11,18 @@ import { FacultySmall } from "./faculty";
 import { root } from '../index';
 import { useQueryGQL, Loading, LoadingError } from "../index";
 
+/**
+ * zakladni komponenta s linkem 
+ */
 export function DepartmentSmall(props) {
     return (
         <Link to={root + "/groups/department/" + props.id}>{props.name}</Link>
     )
 }
 
+/**
+ * stredni komponenta s podrobnejsimi informacemi a yakladni komponentou
+ */
 export function DepartmentMedium(props) {
     return (
         <Card className='mb-3'>
@@ -29,7 +38,9 @@ export function DepartmentMedium(props) {
     )
 }
 
-
+/**
+ * pomocna karta se seznamem ucitelu v odrazkach
+ */
 function SeznamUcitelu(props) {
     return (
         <div className="card mb-3">
@@ -45,6 +56,9 @@ function SeznamUcitelu(props) {
     )
 }
 
+/**
+ * karta s kontaktnimi informacemi
+ */
 function ContactInfo(props) {
     return (
         <div className="card mb-3">
@@ -59,6 +73,9 @@ function ContactInfo(props) {
     )
 }
 
+/**
+ * velka komponenta se vsemi komponenty v sobe
+ */
 export function DepartmentLarge(props) {
     let teachers = props.members.map((item) => (<li key={item.id}><TeacherSmall key={item.id} {...item} /></li>))
 
@@ -82,6 +99,9 @@ export function DepartmentLarge(props) {
     )
 }
 
+/**
+ * defaultni data
+ */
 export const DepartmentLargeStoryBook = (props) => {
     const extendedProps = {
         'id': props.id,
@@ -111,6 +131,9 @@ export const DepartmentLargeStoryBook = (props) => {
     return <DepartmentLarge {...extendedProps} {...props} />;
 }
 
+/**
+ * fetchovani dat pro velkou komponentu
+ */
 export const DepartmentLargeQuery = (id) => 
     fetch('/gql', {
         method: 'POST',
@@ -151,6 +174,9 @@ export const DepartmentLargeFetching = (props) => {
     }
 }
 
+/**
+ * stranka zobrazujici velkou komponentu
+ */
 export const DepartmentPage = (props) => {
     const { id } = useParams();
 

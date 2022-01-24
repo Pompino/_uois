@@ -1,3 +1,6 @@
+/**
+ * soubor komponent, pro zobrazeni uzivatele student
+ */
 import { Link, useParams } from "react-router-dom";
 
 import Card from 'react-bootstrap/Card';
@@ -15,12 +18,18 @@ import { TimeTableMedium } from "../timetable/timetable";
 import { SubjectSmall } from "../studyprogram/subject";
 import { ProgramSmall } from '../studyprogram/studyprogram';
 
+/**
+ * zakladni komponenta studenta s linkem
+ */
 export function StudentSmall(props) {
     return (
         <Link to={root + "/users/student/" + (props.id)}>{props.name} {props.surname}</Link>
     )
 }
 
+/**
+ * stredni komponenta studenta se zakladnimi informacemi
+ */
 export function StudentMedium(props) {
     let faculties = props.faculty.map((item) => (<FacultySmall key={item.id} {...item} />))
     let groups = props.groups.map((item) => (<GroupSmall key={item.id} {...item} />))
@@ -57,6 +66,9 @@ export const StudentProgram = (props) => {
     )
 }
 
+/**
+ * zobrazeni predmetu v odrazkach
+ */
 function SeznamPredmetuUStudenta(props) {
     let subjects = props.subjects.map((subject, index) => (<li><SubjectSmall {...subject} /> </li>))
 
@@ -74,6 +86,9 @@ function SeznamPredmetuUStudenta(props) {
     )
 }
 
+/**
+ * velka komponenta slozena se vsech ostatnich
+ */
 export function StudentLarge(props) {
 
     return (
@@ -102,6 +117,9 @@ export function StudentLarge(props) {
     )
 }
 
+/**
+ * defaultni data
+ */
 export const StudentLargeStoryBook = (props) => {
     const extendedProps = {
         'id': 1,
@@ -140,6 +158,9 @@ export const StudentLargeStoryBook = (props) => {
     return <StudentLarge {...extendedProps} {...props} />;
 }
 
+/**
+ * fetchovani dat pomoci querry dotazu
+ */
 export const StudentLargeQuery = (id) => 
     fetch('/gql', {
         method: 'POST',
@@ -175,6 +196,9 @@ export const StudentLargeQuery = (id) =>
         }),
     })
 
+/**
+ * fetchovani mene dat
+ */
 export const StudentMediumQuery = (id) => 
     fetch('/gql', {
         method: 'POST',
@@ -218,6 +242,9 @@ export const StudentLargeFetching = (props) => {
     }
 }
 
+/**
+ * stranka s velkou komponentou
+ */
 export const StudentPage = (props) => {
     const { id } = useParams();
 
@@ -319,6 +346,9 @@ function RozvrhMedium() {
     )
 }
 
+/**
+ * komponenta s podrobnejsimi informacemi
+ */
 function ContactInfo(props) {
     return (
         <div className="card mb-3">

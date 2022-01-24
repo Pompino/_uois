@@ -1,3 +1,9 @@
+/**
+ * Komponenta pro "basic" uzivatele
+ * Pouze pro vyvojove potreby
+ * 
+ * Chybi PersonPage a spousty dalsich funkcionalit
+ */
 import { Link } from "react-router-dom";
 
 import Card from 'react-bootstrap/Card';
