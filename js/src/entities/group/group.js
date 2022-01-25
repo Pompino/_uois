@@ -1,3 +1,8 @@
+/**
+ * Soubor obsahující komponenty pro zobrazení učební skupiny
+ * Obsahuje Small, Medium, Large a pomocné komponenty
+ */
+
 import { Link, useParams } from "react-router-dom";
 
 import Card from 'react-bootstrap/Card';
@@ -14,11 +19,21 @@ import { useQueryGQL, Loading, LoadingError } from "../index";
 import { SubjectSmall } from "../studyprogram/subject";
 import { ProgramSmall } from "../studyprogram/studyprogram";
 
+/**
+ * Small komponenta obsahující odkaz na konkrétní učební skupinu
+ */
+
 export function GroupSmall(props) {
     return (
         <Link to={root + "/groups/group/" + props.id}>{props.name}</Link>
     )
 }
+
+/**
+ * Medium komponenta s podrobnějšími informacemi 
+ * Obsahuje Small komponenty (odkazy)
+ */
+
 
 export function GroupMedium(props) {
     const faculties = []
@@ -146,12 +161,19 @@ export function GroupPage(props) {
 //     )
 // }
 
+/**
+ * Pomocná komponenta (karta) s rozvrhem
+ */
 
 function RozvrhMedium(props) {
     return (
         <TimeTableMedium type={'student'} id={props.id} />
     )
 }
+
+/**
+ * Pomocná komponenta (karta) se se znamem předmětů
+ */
 
 function SeznamPredmetu(props) {
     let subjects = props.subjects.map((subject, index) => (<li key={index}><SubjectSmall {...subject}/></li>))
@@ -170,6 +192,10 @@ function SeznamPredmetu(props) {
     )
 }
 
+/**
+ * Pomocná komponenta (karta) se seznamem studentů
+ */
+
 function SeznamStudentu(props) {
     let students = props.students.map((item) => (<li key={item.id}><StudentSmall key={item.id} {...item} appRoot={props.appRoot} /></li>))
     return (
@@ -186,6 +212,11 @@ function SeznamStudentu(props) {
     )
 }
 
+
+/**
+ * Pomocná komponenta (karta) s kontaktními údaji
+ */
+
 function ContactInfo(props) {
     return (
         <div className="card mb-3">
@@ -200,6 +231,12 @@ function ContactInfo(props) {
         </div>
     )
 }
+
+
+/**
+ * Large komponenta obsahující ostatní komponenty 
+ * Ve sloupcích
+ */
 
 export function GroupLarge(props) {
 

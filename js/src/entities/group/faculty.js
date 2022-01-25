@@ -1,3 +1,8 @@
+/**
+ * Soubor obsahující veškeré komponenty pro zobrazení fakulty
+ * Obsahuje Small, Medium, Large a pomocné komponenty
+ */
+
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -9,11 +14,21 @@ import { TeacherSmall } from '../person/teacher';
 import { root } from '../index';
 import { useQueryGQL, Loading, LoadingError } from "../index";
 
+
+/**
+ * Small komponenta obsahující odkaz na konkrétního fakultu
+ */
+
 export function FacultySmall(props) {
     return (
         <Link to={root + "/groups/faculty/" + props.id}>{props.name}</Link>
     )
 }
+
+/**
+ * Medium komponenta s podrobnějšími informacemi 
+ * Obsahuje Small komponenty (odkazy)
+ */
 
 export function FacultyMedium(props) {
     return (
@@ -28,6 +43,11 @@ export function FacultyMedium(props) {
         </Card>
     )
 }
+
+
+/**
+ * Pomocná komponenta (karta) se seznamem učitelů
+ */
 
 function SeznamUcitelu(props) {
     let teachers = props.teachers.map((item, index) => {
@@ -46,6 +66,10 @@ function SeznamUcitelu(props) {
         </div>
     )
 }
+
+/**
+ * Large komponenta obsahující všechny pomocné komponenty
+ */
 
 export function FacultyLarge(props) {
     let departments = props.departments.map((item) => (<li key={item.id}><DepartmentSmall key={item.id} {...item} appRoot={props.appRoot} /></li>))
@@ -207,6 +231,10 @@ export function FacultyPage(props) {
 }
 */
 
+/**
+ * Pomocná komponenta s kontaktními údaji
+ */
+
 function ContactInfo(props) {
     return (
         <div className="card mb-3">
@@ -220,6 +248,10 @@ function ContactInfo(props) {
         </div>
     )
 }
+
+/**
+ * Pomocná komponenta se seznamem kateder
+ */
 
 function SeznamKateder(props) {
     return (

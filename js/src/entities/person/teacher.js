@@ -1,3 +1,9 @@
+/**
+ * Soubor obsahující komponenty Osoba - učitel
+ * Obsahuje Small, Medium a Large komponenty 
+ * Včetně pomocných komponent pro TeacherPage
+ */
+
 import { Link, useParams } from "react-router-dom";
 
 import Card from 'react-bootstrap/Card';
@@ -20,11 +26,20 @@ import { BuildingSmall } from "../areal/building";
 import { RoomSmall } from "../areal/room";
 import { ProgramSmall } from "../studyprogram/studyprogram";
 
+/**
+ * Small komponenta obsahující odkaz na konkrétního učitele
+ */
+
 export function TeacherSmall(props) {
     return (
         <Link to={root + "/users/teacher/" + (props.id)}>{props.name} {props.surname}</Link>
     )
 }
+
+/**
+ * Medium komponenta s podrobnějšími informacemi 
+ * Obsahuje Small komponenty (odkazy)
+ */
 
 export function TeacherMedium(props) {
     return (
@@ -58,6 +73,10 @@ export function TeacherMedium(props) {
     )
 }
 
+
+/**
+ * Pomocná komponenta (karta) s kontaktními informacemi
+ */
 
 function ContactInfo(props) {
     //data=props.datas;
@@ -106,6 +125,10 @@ export const Membership = (props) => {
     )
 }
 
+/**
+ * Pomocná komponenta seznam skupin
+ */
+
 export const TeacherSeznamSkupin = (props) => {
     return (
         <Card>
@@ -119,6 +142,11 @@ export const TeacherSeznamSkupin = (props) => {
     )
 }
 
+
+/**
+ * Pomocná komponenta seznam garancí
+ */
+
 export const TeacherGrants = (props) => {
     return (
         <Card>
@@ -131,6 +159,11 @@ export const TeacherGrants = (props) => {
         </Card>
     )
 }
+
+
+/**
+ * Large komponenta obsahující všechny pomocné komponenty
+ */
 
 export function TeacherLarge(props) {
     return (
@@ -259,11 +292,21 @@ export function TeacherPage(props) {
 //     )
 // }
 
+
+/**
+ * Pomocná komponenta s rozvrhem
+ */
+
 function RozvrhMedium(props) {
     return (
         <TimeTableMedium type={'teacher'} id={props.id} />
     )
 }
+
+
+/**
+ * Pomocná komponenta se seznamem předmětů
+ */
 
 function SeznamPredmetu(props) {
     let subjects = props.subjects.map((subject, index) => (<li key={index}><SubjectSmall {...subject} /></li>))
